@@ -8,10 +8,7 @@ namespace Core.Services;
 public class RiskDecisionService : IRiskDecisionService
 {
     
-    public RiskDecisionService()
-    {
-        
-    }
+    public RiskDecisionService() { }
     
     public (bool IsApproved, string? Reason) Decide(OrderSubmitted order, UserAccountEntity user, CancellationToken ct)
     {

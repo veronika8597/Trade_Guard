@@ -4,6 +4,7 @@ using API.Workers;
 using Core.Interfaces;
 using Core.Services;
 using Infrastructure.DataAccess;
+using Infrastructure.DataAccess.Repositories;
 using Infrastructure.Options;
 using Infrastructure.Services.Massaging;
 using Microsoft.EntityFrameworkCore;
@@ -36,6 +37,9 @@ builder.Services.AddSingleton<IMessageBusService, MassageBusService>();
 // ===== Risk DI =====
 // Read port (Infra adapter) + rules service (Core)
 builder.Services.AddScoped<IRiskDecisionService, RiskDecisionService>();
+
+builder.Services.AddScoped<OrdersRepo>();
+builder.Services.AddScoped<UserAccountsRepo>();
 
 // Background worker (subscribes orders.submitted -> publishes orders.decided)
 builder.Services.AddHostedService<TradeGuardWorker>();

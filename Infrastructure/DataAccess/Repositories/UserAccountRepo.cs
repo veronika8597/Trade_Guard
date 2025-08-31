@@ -12,7 +12,7 @@ public class UserAccountsRepo
         _dbContext = dbContext;
     }
 
-    public async Task<UserAccountEntity?> GetById(Guid id)
+    public async Task<UserAccountEntity?> GetUserById(Guid id)
     {
         return await _dbContext.UserAccounts
             .AsNoTracking()

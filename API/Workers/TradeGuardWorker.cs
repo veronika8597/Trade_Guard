@@ -52,17 +52,17 @@ public class TradeGuardWorker : BackgroundService
     //funcc Decision shpuld return the decision itself too 
     private async Task OnOrderAsync(OrderSubmitted msg)
     {
-using var scope = _scopeFactory.CreateScope();
-
-        // resolve per-message services
+        _logger.LogInformation("Enter OnOrderAsync {msg}", msg);
+        using var scope = _scopeFactory.CreateScope();
+        
         var db    = scope.ServiceProvider.GetRequiredService<TradingDatabase>();
         var risk  = scope.ServiceProvider.GetRequiredService<IRiskDecisionService>();
-
-        // 1) load the account for this message
-        var user = await db.UserAccounts
-            .AsNoTracking()
-            .SingleOrDefaultAsync(u => u.AccountId == msg.AccountId);
-
+        var accountsRepo = scope.ServiceProvider.GetRequiredService<UserAccountsRepo>();
+        
+        _logger.LogInformation("before getById ");
+        var user = await accountsRepo.GetUserById(msg.AccountId);
+        _logger.LogInformation("after user {user}", user);
+        
         if (user is null)
         {
             _logger.LogWarning("Account {AccountId} not found; rejecting order {OrderId}", msg.AccountId, msg.OrderId);
