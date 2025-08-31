@@ -78,10 +78,10 @@ Publishes the **final decision** (`orders.decided`) → “Approved” or “Rej
 ---
 
 ## ⚙️ Tech Stack
-- **.NET 8** – performance, modern C#  
-- **Entity Framework Core + PostgreSQL** – persistence  
-- **RabbitMQ** – event-driven heart of the system  
-- **Clean Architecture** – Core, Infrastructure, API  
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" width="30" /> **.NET 9** – performance, modern C#  
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="30" /> **Entity Framework Core + PostgreSQL** – persistence  
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rabbitmq/rabbitmq-original.svg" width="30" /> **RabbitMQ** – event-driven heart of the system  
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="30" /> **Clean Architecture** – Core, Infrastructure, API  
 
 ---
 
