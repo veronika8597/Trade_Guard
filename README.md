@@ -38,13 +38,24 @@ That’s where **TradeGuard** comes in:
                          ▼                   ▼                   ▼
                   Exposure Check      Margin Check       Velocity Check
                          │                   │                   │
-                         └──────────┬────────┴──────────┬────────┘
-                                    ▼                   ▼
-                        ┌───────────────────┐   ┌───────────────────┐
-                        │ EF Core + PGSQL   │   │ OrderDecision Msg │
-                        │ (Persist orders   │   │ (Published back   │
-                        │  + audit logs)    │   │   to RabbitMQ)    │
-                        └───────────────────┘   └───────────────────┘
+                         └───────────────────┬───────────────────┘
+                                             ▼           
+                                  ┌───────────────────────┐
+                                  | EF Core + PostgreSQL  |
+                                  │   TABLE: Orders       │   
+                                  │   - OrderId           │
+                                  │   - ...               │
+                                  │   - Status: Approved/ │
+                                  │            Rejected   │  
+                                  └──────────┬────────────┘    
+                                             ▼
+                                    ┌───────────────────┐
+                                    │ OrderDecision Msg │
+                                    │ (Published back   │
+                                    │   to RabbitMQ)    |
+                                    └───────────────────┘
+
+
 
 ```
 
